@@ -1,0 +1,65 @@
+.reward-poster {
+    height: 500px;
+}
+
+.reward-card {
+    padding: 20px;
+    width: 18rem;
+    height: 21rem;
+    border-radius: 20px;
+    background: white;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    transition: 0.4s;
+    cursor: pointer;
+
+    .reward-card-title {
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 15px 0 0 10px;
+        text-align: center;
+    }
+
+    .reward-card-points {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #ff9800;
+        margin: 15px 0 0 10px;
+        text-align: center;
+    }
+
+    .reward-card-image {
+        height: 200px;
+        width: 100%;
+        background-color: #c9c9c9;
+        border-radius: 15px;
+        box-shadow: inset 8px 8px 10px #c3c3c3,
+            inset -8px -8px 10px #cfcfcf;
+    }
+}
+
+.reward-dialog-content-text {
+    color: #6f8b90;
+    text-align: justify;
+}
+
+.reward-card:hover {
+    translate: 0 -10px;
+}
+
+@media screen and (max-width: 850px) {
+    .reward-poster {
+        height: 350px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .reward-poster {
+        height: 250px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .reward-poster {
+        height: 200px;
+    }
+}

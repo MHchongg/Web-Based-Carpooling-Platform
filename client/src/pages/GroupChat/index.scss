@@ -1,0 +1,104 @@
+.MuiButtonBase-root.MuiTabScrollButton-root.MuiTabScrollButton-vertical.MuiTabs-scrollButtons.MuiTabs-scrollButtonsHideMobile.css-1ehaqqx-MuiButtonBase-root-MuiTabScrollButton-root {
+    opacity: 1;
+    color: #5b277b;
+    box-shadow: 0 26px 58px 0 rgba(0, 0, 0, .22), 0 5px 14px 0 rgba(0, 0, 0, .18);
+}
+
+.MuiTabs-indicator.css-10d9dml-MuiTabs-indicator {
+    width: 5px;
+}
+
+.MuiButtonBase-root.MuiTab-root.MuiTab-textColorPrimary.Mui-selected.css-12dxq6v-MuiButtonBase-root-MuiTab-root {
+    color:#5b277b;
+}
+
+.MuiTabs-indicator.css-10d9dml-MuiTabs-indicator {
+    background-color: #5b277b;
+}
+
+#carpool-grp-btn {
+    position: fixed;
+    display: none;
+    z-index: 9;
+}
+
+.selected-carpool-grp {
+    border-right: 5px solid #5b277b;
+    color:#5b277b;
+}
+
+.not-selected-carpool-grp {
+    color: #6f8b90;
+}
+
+#chat-container {
+    width: 85%;
+    height: 100%;
+    background-image: url('../../assets/GroupChatbg.webp');
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    #chat-body {
+        width: 100%;
+        height: 100%;
+        overflow: scroll;
+        padding: 1rem;
+        overflow-x: hidden;
+
+        .rce-container-mbox {
+            .rce-mbox {
+                .rce-mbox-title,
+                .rce-mbox-time.non-copiable {
+                    color: #5b277b;
+                    font-weight: bold;
+                }
+    
+                .rce-mbox-time.non-copiable {
+                    font-weight: bold;
+                }
+            }
+    
+            .rce-mbox-right {
+                .rce-mbox-title,     
+                .rce-mbox-time.non-copiable {
+                    color: #ff9800;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+
+    #chat-body::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    #chat-body::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    #chat-body::-webkit-scrollbar-thumb {
+        background-color: white;
+        border-radius: 20px;
+    }
+
+    #message-input-field {
+        width: 100%;
+        padding: 0.6rem;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    #carpool-grp-btn {
+        display: block;
+    }
+
+    #carpool-grp-tab {
+        display: none;
+    }
+
+    #chat-container {
+        width: 100%;
+    }
+}

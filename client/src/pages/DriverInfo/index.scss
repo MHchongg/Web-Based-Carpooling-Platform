@@ -1,0 +1,17 @@
+#update-info-container {
+    width: 49%;
+}
+
+#current-info-container {
+    width: 49%;
+}
+
+@media screen and (max-width: 620px) {
+    #update-info-container {
+        width: 100%;
+    }
+
+    #current-info-container {
+        width: 100%;
+    }
+}

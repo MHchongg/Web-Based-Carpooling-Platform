@@ -1,0 +1,91 @@
+.sd-panel.sd-panel--as-page>.sd-panel__header.sd-panel__header .sd-panel__title span,
+.sd-file__choose-btn--text,
+.sd-action__title.sv-action-bar-item__title--with-icon {
+    color: rgb(91, 39, 123);
+}
+
+.sd-btn.sd-btn--action.sd-navigation__complete-btn {
+    background-color: rgb(91, 39, 123);
+}
+
+.sd-file__choose-btn--text .sv-svg-icon,
+.sd-action .sv-svg-icon.sd-action__icon use {
+    fill: rgb(91, 39, 123);
+}
+
+.sd-input.sd-input--disabled {
+    opacity: 1;
+}
+
+.sd-input--readonly {
+    background-color: white;
+}
+
+.completed-loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+
+    .completed-wrapper {
+        width: 180px;
+        height: 50px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+
+        .completed-text {
+            z-index: 3;
+            font-family: Whitney, -apple-system, Helvetica;
+            letter-spacing: 1px;
+            font-weight: 700;
+            font-size: 20px;
+            color: white;
+            filter: drop-shadow(2px 2px 0px #a37cf0);
+        }
+
+        .completed-box {
+            width: 100%;
+            height: 100%;
+            background-color: #5b277b;
+            position: absolute;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: loading ease-in-out 0.9s infinite alternate-reverse;
+        }
+
+        .completed-box::before {
+            content: "";
+            width: 20px;
+            height: 170%;
+            background-color: #ac8cd3;
+            position: absolute;
+            z-index: 1;
+            animation: loading2 ease-in-out 0.9s infinite alternate-reverse;
+        }
+    }
+}
+
+@keyframes loading {
+    0% {
+        transform: translateX(-20px);
+    }
+
+    100% {
+        transform: translateX(20px);
+    }
+}
+
+@keyframes loading2 {
+    0% {
+        transform: translateX(-50px);
+    }
+
+    100% {
+        transform: translateX(50px);
+    }
+}

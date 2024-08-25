@@ -1,0 +1,41 @@
+#profile-container {
+
+    width: 75%;
+
+    #basic-info-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .general-font {
+        color: #6f8b90;
+        font-weight: bold !important;
+        font-size: 1rem !important;
+        display: flex;
+        align-items: center;
+        column-gap: 5px;
+        flex-wrap: wrap;
+
+        .PhoneInputInput {
+            color: #6f8b90;
+            font-weight: bold;
+            border: 3px solid #6f8b90;
+            border-radius: 5px;
+        }
+    }
+}
+
+@media screen and (max-width: 680px) {
+    #profile-container {
+        width: 95%;
+
+        #basic-info-container {
+            flex-direction: column-reverse;
+            align-items: center;
+
+            .general-font {
+                justify-content: center;
+            }
+        }
+    }
+}

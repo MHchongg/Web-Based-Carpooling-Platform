@@ -1,0 +1,16 @@
+#search-input-div {
+    padding: 2px 4px;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    width: 50%;
+    margin-bottom: 1rem;
+    background-color: #dddddd;
+    border-radius: 15px;
+}
+
+@media screen and (max-width: 850px) {
+    #search-input-div {
+        width: 90%;
+    }
+}

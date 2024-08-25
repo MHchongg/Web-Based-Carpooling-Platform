@@ -1,0 +1,9 @@
+#simple-popper {
+    z-index: 9999;
+}
+
+@media screen and (max-width: 480px) {
+    img {
+        width: 100%;
+    }
+}

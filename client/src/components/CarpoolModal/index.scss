@@ -1,0 +1,24 @@
+.MuiBox-root.css-fwqn1z {
+    .leaflet-container {
+        width: 52%;
+    }
+
+    #carpool-info-container {
+        width: 45%;
+    }
+}
+
+@media screen and (max-width: 815px) {
+    .MuiBox-root.css-fwqn1z {
+        height: 85%;
+
+        .leaflet-container {
+            height: 330px !important;
+            width: 100% !important;
+        }
+    
+        #carpool-info-container {
+            width: 100%;
+        }
+    }
+}

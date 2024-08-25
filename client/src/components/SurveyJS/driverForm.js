@@ -1,0 +1,135 @@
+export const driverForm = {
+    "pages": [
+        {
+            "name": "page1",
+            "elements": [
+                {
+                    "type": "text",
+                    "name": "vehicle_model",
+                    "width": "40%",
+                    "minWidth": "256px",
+                    "placeholder": "Make and Model",
+                    "allowClear": false,
+                    "isRequired": true,
+                    "requiredErrorText": "This field cannot be empty",
+                },
+                {
+                    "type": "dropdown",
+                    "name": "vehicle_year",
+                    "width": "20%",
+                    "minWidth": "112px",
+                    "startWithNewLine": false,
+                    "placeholder": "Year",
+                    "allowClear": false,
+                    "choicesMin": 1990,
+                    "choicesMax": 2024,
+                    "isRequired": true,
+                    "requiredErrorText": "This field cannot be empty",
+                },
+                {
+                    "type": "dropdown",
+                    "name": "vehicle_color",
+                    "width": "40%",
+                    "minWidth": "256px",
+                    "startWithNewLine": false,
+                    "choices": ["Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Magenta", "Purple", "Lavender", "Lilac", "White", "Black", "Grey", "Silver", "Pink", "Maroon", "Brown", "Beige", "Tan", "Peach", "Lime", "Olive", "Turquoise", "Teal", "Navy Blue", "Indigo", "Violet"],
+                    "choicesOrder": "random",
+                    "placeholder": "Color",
+                    "allowClear": false,
+                    "isRequired": true,
+                    "requiredErrorText": "This field cannot be empty",
+                },
+                {
+                    "type": "text",
+                    "name": "vehicle_vin",
+                    "width": "40%",
+                    "minWidth": "256px",
+                    "maxLength": 17,
+                    "placeholder": "VIN",
+                    "isRequired": true,
+                    "requiredErrorText": "This field cannot be empty",
+                },
+                {
+                    "type": "text",
+                    "name": "vehicle_number",
+                    "width": "40%",
+                    "minWidth": "256px",
+                    "maxLength": 12,
+                    "placeholder": "Car Plate Number",
+                    "isRequired": true,
+                    "requiredErrorText": "This field cannot be empty",
+                },
+                {
+                    "type": "file",
+                    "name": "vehicle_photo",
+                    "width": "100%",
+                    "minWidth": "256px",
+                    "fileOrPhotoPlaceholder": "Select a photo to upload or take a photo using the camera.",
+                    "acceptedTypes": 'image/*',
+                    "isRequired": true,
+                    "sourceType": "file-camera",
+                    "maxSize": 5242880,
+                    "requiredErrorText": "This field cannot be empty",
+                }
+            ],
+            "questionTitleLocation": "hidden",
+            "title": "Vehicle Information"
+        },
+        {
+            "name": "page2",
+            "elements": [
+                {
+                    "type": "multipletext",
+                    "name": "license_exp_date",
+                    "width": "60%",
+                    "minWidth": "256px",
+                    "items": [
+                        {
+                            "name": "exp_date",
+                            "inputType": "date",
+                            "title": "Expiration Date",
+                            "minValueExpression": "today()",
+                        }
+                    ],
+                    "isRequired": true,
+                    "requiredErrorText": "This field cannot be empty",
+                },
+                {
+                    "type": "dropdown",
+                    "name": "license_issue_country",
+                    "width": "40%",
+                    "minWidth": "256px",
+                    "startWithNewLine": false,
+                    "choicesByUrl": {
+                        "url": "https://surveyjs.io/api/CountriesExample"
+                    },
+                    "placeholder": "Issuing Country",
+                    "allowClear": false,
+                    "isRequired": true,
+                    "requiredErrorText": "This field cannot be empty",
+                },
+                {
+                    "type": "file",
+                    "name": "license_photo",
+                    "width": "100%",
+                    "minWidth": "256px",
+                    "filePlaceholder": "Please upload a copy of a driver's license.",
+                    "acceptedTypes": 'image/*',
+                    "isRequired": true,
+                    "maxSize": 5242880,
+                    "requiredErrorText": "This field cannot be empty",
+                }
+            ],
+            "questionTitleLocation": "hidden",
+            "title": "Driver's License"
+        }
+    ],
+    "showQuestionNumbers": "off",
+    "questionErrorLocation": "bottom",
+    "completeText": "Submit",
+    "questionsOnPageMode": "singlePage",
+    "widthMode": "static",
+    "width": "904",
+    "fitToContainer": true,
+    "showCompletedPage": false,
+};

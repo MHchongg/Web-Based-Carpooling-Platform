@@ -1,0 +1,167 @@
+.carpool-page {
+    height: fit-content;
+    padding-bottom: 1.5rem;
+
+    .search-div {
+        height: fit-content;
+        background-image: url('../../assets/car.gif');
+        background-position-x: 6%;
+        background-repeat: no-repeat;
+        background-size: 35% 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        row-gap: 2.5rem;
+        flex-wrap: wrap;
+
+        h1 {
+            width: 100%;
+            text-align: center;
+            color: #5b277b;
+            font-weight: bolder;
+            margin-top: 2rem;
+        }
+
+        .search-components {
+            height: fit-content;
+            width: 45%;
+            padding: 0 1rem 1rem 1rem;
+            position: relative;
+            left: 20%;
+            margin-bottom: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+            .departure-address,
+            .destination-address {
+                width: 100%;
+
+                .geocoder-container {
+                    width: 100%;
+
+                    input {
+                        border: none;
+                        padding: 1.5rem 0 1.5rem 0;
+                        font-weight: 600;
+                    }
+                }
+            }
+
+            .MuiStack-root.css-11a8txn-MuiStack-root {
+                width: 100%;
+            }
+
+            button {
+                width: 100%;
+                height: 15%;
+                margin-top: 1rem;
+            }
+        }
+    }
+
+    .carpool-options {
+        width: 90%;
+        height: fit-content;
+        margin: auto;
+
+        .MuiTableCell-head {
+            font-weight: bold;
+            font-size: large;
+            background-color: #f59816;
+            color: white;
+        }
+
+        .carpool-card {
+            transition: 0.5s;
+        }
+
+        .carpool-card:hover {
+            cursor: pointer;
+            translate: 0px -5px;
+        }
+    }
+}
+
+.avatar-btn {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.carpool-form-submit-btn {
+    width: 35% !important;
+    color: white !important;
+    font-weight: bold !important;
+    background-color: #5b277b !important;
+}
+
+.carpool-form-submit-btn:hover {
+    background-color: #441d5c !important;
+}
+
+.carpool-form-submit-btn:disabled {
+    background-color: grey !important;
+}
+
+.MuiMenu-paper.css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {
+    width: 88.7%;
+}
+
+.selected-menu-option {
+    color: white !important;
+    background-color: #f59816 !important;
+}
+
+.spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #ffffff;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .carpool-page {
+        .search-div {
+            background-position: center;
+            background-size: 90% 90%;
+
+            .search-components {
+                width: 90%;
+                left: 0%;
+            }
+        }
+
+        .carpool-options {
+            .carpool-card {
+                    width: 100%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 815px) {
+    .carpool-modal-details {
+        width: 100%;
+    }
+}
