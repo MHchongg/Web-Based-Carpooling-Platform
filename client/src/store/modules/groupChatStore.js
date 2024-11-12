@@ -23,21 +23,21 @@ const groupChatReducer = groupChatStore.reducer
 
 const getMyGroupChatGroups = (user_email) => {
     return async (dispatch) => {
-        const res = await request.get(`/getMyGroupChatGroups?user_email=${user_email}`)
+        const res = await request.get(`/api/groupChat/getMyGroupChatGroups?user_email=${user_email}`)
         dispatch(setGroupChatGroup(res.data))
     }
 }
 
 const saveMessage = (data) => {
     return async () => {
-        const res = await request.post('/saveMessage', { data: data })
+        const res = await request.post('/api/groupChat/saveMessage', { data: data })
         return res.data
     }
 }
 
 const getMessageHistory = (groupID) => {
     return async () => {
-        const res = await request.get(`/getMessageHistory?groupID=${groupID}`)
+        const res = await request.get(`/api/groupChat/getMessageHistory?groupID=${groupID}`)
         return res.data
     }
 }

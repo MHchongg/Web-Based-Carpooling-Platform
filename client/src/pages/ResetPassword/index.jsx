@@ -8,7 +8,7 @@ import Footer from '../../components/Footer'
 import AlertMsg from '../../components/AlertMsg';
 import Loading from "../../components/Loading";
 import NotFound from "../../components/NotFound";
-import { checkResetPasswordAccessibility, resetPassword } from "../../store/modules/userStore"
+import { validateResetPasswordLink, resetPassword } from "../../store/modules/userStore"
 import "./index.scss"
 
 const MyButton = styled(Button)(({ theme }) => ({
@@ -72,7 +72,7 @@ const ResetPassword = () => {
 
     useEffect(() => {
         const checkAccessibility = async () => {
-            const response = await dispatch(checkResetPasswordAccessibility(params.user_email, params.uuid))
+            const response = await dispatch(validateResetPasswordLink(params.user_email, params.uuid))
             setAccessibility(response)
             setIsLoading(false)
         }

@@ -9,7 +9,7 @@ import chatGroupImage from "../../assets/chatgroup.png"
 import WorkspacesRoundedIcon from '@mui/icons-material/WorkspacesRounded';
 import './index.scss'
 import { getMyGroupChatGroups } from '../../store/modules/groupChatStore';
-import { getCarpoolList } from '../../store/modules/carpoolStore';
+import { getCarpools } from '../../store/modules/carpoolStore';
 
 const socket = io.connect(process.env.REACT_APP_API_URL);
 
@@ -44,7 +44,7 @@ const GroupChat = () => {
 
     useEffect(() => {
         async function fetchMyGroupChatGroups() {
-            await dispatch(getCarpoolList())
+            await dispatch(getCarpools())
             await dispatch(getMyGroupChatGroups(userEmail))
         }
 

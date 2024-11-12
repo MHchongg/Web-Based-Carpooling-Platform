@@ -2,7 +2,7 @@ import { Modal, Box, Typography, Stack, Badge, Button, Alert } from "@mui/materi
 import Map from "../Map"
 import { orange } from '@mui/material/colors';
 import { useState, useEffect } from "react";
-import { getCarpoolMembers, requestToJoinCarpool, handleJoinRequest, exitCarpool, formCarpool, handleCarpoolStatus, setCarpoolList } from "../../store/modules/carpoolStore";
+import { getCarpoolMembers, requestToJoinCarpool, updateJoinRequest, exitCarpool, formCarpool, updateCarpoolStatus, setCarpoolList } from "../../store/modules/carpoolStore";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../Loading";
 import AlertMsg from "../AlertMsg";
@@ -126,7 +126,7 @@ const CarpoolModal = ({ carpoolModal, handleCarpoolModalClose }) => {
         setIsBtnProcess(true)
         setMyDialog({ isShow: false, title: '', content: '' })
 
-        const response = await dispatch(handleJoinRequest(
+        const response = await dispatch(updateJoinRequest(
             carpoolModal.carpoolInfo.myCarpoolJoinRequests[carpoolModal.carpoolInfo.index].request_id,
             carpoolModal.carpoolInfo.carpool,
             carpoolModal.carpoolInfo.myCarpoolJoinRequests[carpoolModal.carpoolInfo.index].user_email,
@@ -190,7 +190,7 @@ const CarpoolModal = ({ carpoolModal, handleCarpoolModalClose }) => {
             setIsStartBtnDisabled(true);
             setIsStarting(true)
             setStartBtnText("Starting");
-            response = await dispatch(handleCarpoolStatus(carpoolModal.carpoolInfo.carpool.carpool_id, carpoolModal.carpoolInfo.carpool.carpool_title, carpoolModal.carpoolInfo.carpool.carpool_from, carpoolModal.carpoolInfo.carpool.carpool_to, carpoolModal.carpoolInfo.carpool.carpool_dateTime, members_email, carpoolStatus))
+            response = await dispatch(updateCarpoolStatus(carpoolModal.carpoolInfo.carpool.carpool_id, carpoolModal.carpoolInfo.carpool.carpool_title, carpoolModal.carpoolInfo.carpool.carpool_from, carpoolModal.carpoolInfo.carpool.carpool_to, carpoolModal.carpoolInfo.carpool.carpool_dateTime, members_email, carpoolStatus))
             setStartBtnText("Departed");
             setIsStarting(false)
             setIsEndBtnDisabled(false)
@@ -215,7 +215,7 @@ const CarpoolModal = ({ carpoolModal, handleCarpoolModalClose }) => {
             setIsEndBtnDisabled(true);
             setIsEnding(true)
             setEndBtnText("Ending");
-            response = await dispatch(handleCarpoolStatus(carpoolModal.carpoolInfo.carpool.carpool_id, carpoolModal.carpoolInfo.carpool.carpool_title, carpoolModal.carpoolInfo.carpool.carpool_from, carpoolModal.carpoolInfo.carpool.carpool_to, carpoolModal.carpoolInfo.carpool.carpool_dateTime, members_email, carpoolStatus))
+            response = await dispatch(updateCarpoolStatus(carpoolModal.carpoolInfo.carpool.carpool_id, carpoolModal.carpoolInfo.carpool.carpool_title, carpoolModal.carpoolInfo.carpool.carpool_from, carpoolModal.carpoolInfo.carpool.carpool_to, carpoolModal.carpoolInfo.carpool.carpool_dateTime, members_email, carpoolStatus))
             setEndBtnText("End");
             setIsEnding(false)
             setShowAlert(response)
@@ -257,18 +257,18 @@ const CarpoolModal = ({ carpoolModal, handleCarpoolModalClose }) => {
                             <Alert severity="info" sx={{ fontWeight: 'bold', width: '100%', marginBottom: '1rem' }}>
                                 This carpool has expired and is no longer available. Please exit the carpool or withdraw request.
                             </Alert>
-                        :
-                        carpoolModal.carpoolInfo.carpool.carpool_status === "End" ?
-                            <Alert severity="info" sx={{ fontWeight: 'bold', width: '100%', marginBottom: '1rem' }}>
-                                Carpool ended. Check email to rate members. Thanks for joining!
-                            </Alert>
-                        :
-                        carpoolModal.carpoolInfo.carpool.carpool_status === "InProgress" ?
-                            <Alert severity="info" sx={{ fontWeight: 'bold', width: '100%', marginBottom: '1rem' }}>
-                                The carpool is currently in progress. Safe travels!
-                            </Alert>
-                        :
-                        <></>
+                            :
+                            carpoolModal.carpoolInfo.carpool.carpool_status === "End" ?
+                                <Alert severity="info" sx={{ fontWeight: 'bold', width: '100%', marginBottom: '1rem' }}>
+                                    Carpool ended. Check email to rate members. Thanks for joining!
+                                </Alert>
+                                :
+                                carpoolModal.carpoolInfo.carpool.carpool_status === "InProgress" ?
+                                    <Alert severity="info" sx={{ fontWeight: 'bold', width: '100%', marginBottom: '1rem' }}>
+                                        The carpool is currently in progress. Safe travels!
+                                    </Alert>
+                                    :
+                                    <></>
                     }
 
                     <Map
@@ -374,9 +374,9 @@ const CarpoolModal = ({ carpoolModal, handleCarpoolModalClose }) => {
                                     variant='contained'
                                     startIcon={<NavigationTwoToneIcon />}
                                     onClick={() => {
-                                            setCarpoolStatus('InProgress')
-                                            setMyDialog({ isShow: true, title: 'Start carpool confirmation', content: 'Are you sure you want to start the carpool?' })
-                                        }
+                                        setCarpoolStatus('InProgress')
+                                        setMyDialog({ isShow: true, title: 'Start carpool confirmation', content: 'Are you sure you want to start the carpool?' })
+                                    }
                                     }
                                     disabled={isStartBtnDisabled}
                                 >
@@ -387,9 +387,9 @@ const CarpoolModal = ({ carpoolModal, handleCarpoolModalClose }) => {
                                     variant='contained'
                                     startIcon={<WhereToVoteTwoToneIcon />}
                                     onClick={() => {
-                                            setCarpoolStatus('End')
-                                            setMyDialog({ isShow: true, title: 'End carpool confirmation', content: 'Are you sure you want to end the carpool?' })
-                                        }
+                                        setCarpoolStatus('End')
+                                        setMyDialog({ isShow: true, title: 'End carpool confirmation', content: 'Are you sure you want to end the carpool?' })
+                                    }
                                     }
                                     disabled={isEndBtnDisabled}
                                 >

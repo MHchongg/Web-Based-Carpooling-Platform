@@ -18,6 +18,7 @@ import ForgotPassword from '../pages/ForgotPassword';
 import ResetPassword from '../pages/ResetPassword';
 import { createBrowserRouter } from "react-router-dom"
 import { AuthUser } from '../components/Auth/AuthUser';
+import Forbidden from '../pages/Forbidden';
 
 const router = createBrowserRouter([
     {
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
     {
         path: '/resetPassword/:user_email/:uuid',
         element: <ResetPassword />
+    },
+    {
+        path: '/forbidden',
+        element: <Forbidden />
     },
     {
         path: '*',

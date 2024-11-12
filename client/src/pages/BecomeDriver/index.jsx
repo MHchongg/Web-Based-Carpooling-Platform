@@ -101,8 +101,7 @@ const BecomeDriver = () => {
                 else {
                     requestData["vehicle_photo"] = sender.data["vehicle_photo"][0]
                     requestData["license_photo"] = sender.data["license_photo"][0]
-                    requestData["user_email"] = userInfo.user_email
-                    const response = await dispatch(updateDriverInfo(requestData))
+                    const response = await dispatch(updateDriverInfo(requestData, userInfo.user_email))
                     setShowAlert(response)
 
                     if (response.status) setShowCompletedPage(true)

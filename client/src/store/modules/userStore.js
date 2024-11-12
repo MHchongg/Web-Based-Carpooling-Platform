@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { 
-    request, 
-    getToken, 
-    setToken as _setToken, 
+import {
+    request,
+    getToken,
+    setToken as _setToken,
     removeToken,
     getUserEmail,
     setUserEmail as _setUserEmail,
@@ -19,22 +19,22 @@ const userStore = createSlice({
     },
 
     reducers: {
-        setToken (state, action) {
+        setToken(state, action) {
             state.token = action.payload
             _setToken(action.payload)
         },
-        logOut (state) {
+        logOut(state) {
             removeToken()
             removeUserEmail()
             state.token = ''
             state.userEmail = ''
             state.userInfo = {}
         },
-        setUserEmail (state, action) {
+        setUserEmail(state, action) {
             state.userEmail = action.payload
             _setUserEmail(action.payload)
         },
-        setUserInfo (state, action) {
+        setUserInfo(state, action) {
             state.userInfo = action.payload
         }
     }
@@ -46,7 +46,7 @@ const userReducer = userStore.reducer
 
 const Login = (loginForm) => {
     return async (dispatch) => {
-        const res = await request.post('/login', { loginForm: loginForm })
+        const res = await request.post('/api/auth/login', { loginForm: loginForm })
         if (res.data.status) {
             dispatch(setToken(res.data.token))
             dispatch(setUserEmail(res.data.user_email))
@@ -57,21 +57,21 @@ const Login = (loginForm) => {
 
 const Register = (registerForm) => {
     return async () => {
-        const res = await request.post('/register', { registerForm: registerForm })
+        const res = await request.post('/api/auth/register', { registerForm: registerForm })
         return res.data
     }
 }
 
 const sendOTP = (userEmail) => {
     return async () => {
-        const res = await request.post(`/sendOTP`, {userEmail: userEmail})
+        const res = await request.post(`/api/auth/sendOTP`, { userEmail: userEmail })
         return res.data
     }
 }
 
 const fetchUserInfo = (user_email) => {
     return async (dispatch) => {
-        const res = await request.get(`/fetchUserInfo?user_email=${user_email}`)
+        const res = await request.get(`/api/user?user_email=${user_email}`)
         if (user_email === getUserEmail()) {
             dispatch(setUserInfo(res.data))
         }
@@ -81,70 +81,70 @@ const fetchUserInfo = (user_email) => {
 
 const checkAccessForRating = (carpool_id, user_email, uuid) => {
     return async () => {
-        const res = await request.get(`/checkAccessForRating?carpool_id=${carpool_id}&user_email=${user_email}&uuid=${uuid}`)
+        const res = await request.get(`/api/rating?carpool_id=${carpool_id}&user_email=${user_email}&uuid=${uuid}`)
         return res.data
     }
 }
 
 const submitRatings = (ratings, carpool_id, user_email, uuid) => {
     return async () => {
-        const res = await request.post('/submitRatings', {ratings: ratings, carpool_id: carpool_id, user_email: user_email, uuid: uuid})
+        const res = await request.post('/api/rating/submitRatings', { ratings: ratings, carpool_id: carpool_id, user_email: user_email, uuid: uuid })
         return res.data
     }
 }
 
 const updatePhoneNum = (new_phoneNum, user_email) => {
     return async () => {
-        const res = await request.post('/updatePhoneNum', { new_phoneNum: new_phoneNum, user_email: user_email })
+        const res = await request.patch('/api/user/updatePhoneNum', { new_phoneNum: new_phoneNum, user_email: user_email })
         return res.data
     }
 }
 
 const requestBecomeDriver = (requestForm) => {
     return async () => {
-        const res = await request.post('/requestBecomeDriver', { requestForm: requestForm })
+        const res = await request.post('/api/driverRequest/requestBecomeDriver', { requestForm: requestForm })
         return res.data
     }
 }
 
 const getBecomeDriverReqStatus = (user_email) => {
     return async () => {
-        const res = await request.get(`/getBecomeDriverReqStatus?user_email=${user_email}`)
+        const res = await request.get(`/api/driverRequest/getBecomeDriverReqStatus?user_email=${user_email}`)
         return res.data
     }
 }
 
-const updateDriverInfo = (requestForm) => {
+const updateDriverInfo = (requestForm, user_email) => {
     return async () => {
-        const res = await request.post('/updateDriverInfo', { requestForm: requestForm })
+        const res = await request.patch('/api/user/updateDriverInfo', { requestForm: requestForm, user_email: user_email })
         return res.data
     }
 }
 
-const sendResetPasswordEmail = (user_email) => {
+const forgotPassword = (user_email) => {
     return async () => {
-        const res = await request.post('/sendResetPasswordEmail', { user_email: user_email })
+        const res = await request.post('/api/auth/forgotPassword', { user_email: user_email })
         return res.data
     }
 }
 
-const checkResetPasswordAccessibility = (user_email, uuid) => {
+const validateResetPasswordLink = (user_email, uuid) => {
     return async () => {
-        const res = await request.get(`/checkResetPasswordAccessibility?user_email=${user_email}&uuid=${uuid}`)
+        const res = await request.get(`/api/auth/resetPassword?user_email=${user_email}&uuid=${uuid}`)
         return res.data
     }
 }
 
 const resetPassword = (user_email, form_passwords) => {
     return async () => {
-        const res = await request.post('/resetPassword', { user_email: user_email, form_passwords: form_passwords })
+        const res = await request.put('/api/auth/resetPassword', { user_email: user_email, form_passwords: form_passwords })
         return res.data
     }
 }
 
-export { 
-    Login, 
-    Register, 
+export {
+    Login,
+    Register,
     sendOTP,
     fetchUserInfo,
     checkAccessForRating,
@@ -153,11 +153,11 @@ export {
     requestBecomeDriver,
     getBecomeDriverReqStatus,
     updateDriverInfo,
-    sendResetPasswordEmail,
-    checkResetPasswordAccessibility,
+    forgotPassword,
+    validateResetPasswordLink,
     resetPassword,
-    setToken, 
-    logOut, 
+    setToken,
+    logOut,
     setUserEmail,
     setUserInfo,
 }

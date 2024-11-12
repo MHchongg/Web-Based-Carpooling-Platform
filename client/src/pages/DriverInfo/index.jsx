@@ -12,7 +12,7 @@ import { Survey } from "survey-react-ui";
 import { driverForm } from "../../components/SurveyJS/driverForm"
 import { themeJson } from "../../components/SurveyJS/theme"
 import { getBecomeDriverReqStatus } from "../../store/modules/userStore";
-import { handleBecomeDriverRequest, getDriverUpdateInfo, handleUpdateDriverInfoRequest } from "../../store/modules/adminStore";
+import { updateBecomeDriverRequest, getDriverUpdateInfo, handleUpdateDriverInfoRequest } from "../../store/modules/adminStore";
 import Loading from "../../components/Loading";
 import NotFound from "../../components/NotFound";
 import { stringAvatar } from "../../utils";
@@ -90,7 +90,7 @@ const DriverInfo = () => {
     const becomeDriverRequest = async (type) => {
         setBtnDisabled(true)
         setIsLoading(true)
-        const response = await dispatch(handleBecomeDriverRequest(type, params.driverEmail))
+        const response = await dispatch(updateBecomeDriverRequest(type, params.driverEmail))
         setIsLoading(false)
         setCompletedContent(response)
         setShowCompletedPage(true)

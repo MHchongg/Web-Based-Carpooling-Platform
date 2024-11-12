@@ -30,7 +30,6 @@ Create a .env file in the server folder
 
 ~~~~
 PORT=your_port
-SALT_ROUNDS=your_salt_rounds
 SECRET_KEY=your_secret_key
 DB_HOST=your_db_host
 DB_USER=your_db_user

@@ -21,54 +21,54 @@ const {
 
 const adminReducer = adminStore.reducer
 
-const getUserList = () => {
+const getUsers = () => {
     return async (dispatch) => {
-        const res = await request.get(`/getUserList`)
+        const res = await request.get(`/api/user/getUsers`)
         dispatch(setUserList(res.data))
     }
 }
 
 const updateUserStatus = (user_email, user_name, update_action) => {
     return async () => {
-        const res = await request.post('/updateUserStatus', { user_email: user_email, user_name: user_name, update_action: update_action })
+        const res = await request.patch('/api/user/updateUserStatus', { user_email: user_email, user_name: user_name, update_action: update_action })
         return res.data
     }
 }
 
 const getRequests = () => {
     return async () => {
-        const res = await request.get(`/getRequests`)
+        const res = await request.get(`/api/driverRequest/getRequests`)
         return res.data
     }
 }
 
-const handleBecomeDriverRequest = (type, user_email) => {
+const updateBecomeDriverRequest = (type, user_email) => {
     return async () => {
-        const res = await request.post('/handleBecomeDriverRequest', { type: type, user_email: user_email })
+        const res = await request.patch('/api/driverRequest/updateBecomeDriverRequest', { type: type, user_email: user_email })
         return res.data
     }
 }
 
 const getDriverUpdateInfo = (user_email) => {
     return async () => {
-        const res = await request.get(`/getDriverUpdateInfo?user_email=${user_email}`)
+        const res = await request.get(`/api/driverRequest/getDriverUpdateInfo?user_email=${user_email}`)
         return res.data
     }
 }
 
 const handleUpdateDriverInfoRequest = (type, user_email, newInfo) => {
     return async () => {
-        const res = await request.post('/handleUpdateDriverInfoRequest', { type: type, user_email: user_email, newInfo: newInfo })
+        const res = await request.patch('/api/driverRequest/handleUpdateDriverInfoRequest', { type: type, user_email: user_email, newInfo: newInfo })
         return res.data
     }
 }
 
 export {
     setUserList,
-    getUserList,
+    getUsers,
     updateUserStatus,
     getRequests,
-    handleBecomeDriverRequest,
+    updateBecomeDriverRequest,
     getDriverUpdateInfo,
     handleUpdateDriverInfoRequest,
 }

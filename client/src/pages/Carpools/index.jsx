@@ -22,7 +22,7 @@ import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 import { useSelector, useDispatch } from 'react-redux';
-import { postCarpool, getCarpoolList, getMyCarpoolJoinRequest, getMyCarpoolList, getMyJoinRequests, getDriverIsMeGroup, searchCarpools } from '../../store/modules/carpoolStore';
+import { postCarpool, getCarpools, getMyCarpoolJoinRequest, getMyCarpools, getMyJoinRequests, getDriverGroups, searchCarpools } from '../../store/modules/carpoolStore';
 import CarpoolList from './CarpoolList';
 import Loading from '../../components/Loading';
 
@@ -78,10 +78,10 @@ const Carpools = () => {
 
     useEffect(() => {
         async function fetchCarpoolInfo() {
-            await dispatch(getCarpoolList());
-            await dispatch(getMyCarpoolList(userInfo.user_email))
+            await dispatch(getCarpools());
+            await dispatch(getMyCarpools(userInfo.user_email))
             await dispatch(getMyCarpoolJoinRequest(userInfo.user_email))
-            await dispatch(getDriverIsMeGroup(userInfo.user_email))
+            await dispatch(getDriverGroups(userInfo.user_email))
             setIsLoading(false)
         }
         fetchCarpoolInfo();
@@ -98,8 +98,8 @@ const Carpools = () => {
         switch (index) {
             case 0:
                 setIsLoading(true)
-                await dispatch(getCarpoolList());
-                await dispatch(getDriverIsMeGroup(userInfo.user_email))
+                await dispatch(getCarpools());
+                await dispatch(getDriverGroups(userInfo.user_email))
                 setMenuBtnText('Available Carpools')
                 setIsLoading(false)
                 handleMenuClose()
@@ -107,8 +107,8 @@ const Carpools = () => {
 
             case 1:
                 setIsLoading(true)
-                await dispatch(getCarpoolList());
-                await dispatch(getDriverIsMeGroup(userInfo.user_email))
+                await dispatch(getCarpools());
+                await dispatch(getDriverGroups(userInfo.user_email))
                 setMenuBtnText('Request from Students')
                 setIsLoading(false)
                 handleMenuClose()
@@ -116,9 +116,9 @@ const Carpools = () => {
 
             case 2:
                 setIsLoading(true)
-                await dispatch(getCarpoolList());
-                await dispatch(getMyCarpoolList(userInfo.user_email))
-                await dispatch(getDriverIsMeGroup(userInfo.user_email))
+                await dispatch(getCarpools());
+                await dispatch(getMyCarpools(userInfo.user_email))
+                await dispatch(getDriverGroups(userInfo.user_email))
                 setMenuBtnText('My Carpools')
                 setIsLoading(false)
                 handleMenuClose()
@@ -126,9 +126,9 @@ const Carpools = () => {
 
             case 3:
                 setIsLoading(true)
-                await dispatch(getCarpoolList());
+                await dispatch(getCarpools());
                 await dispatch(getMyCarpoolJoinRequest(userInfo.user_email))
-                await dispatch(getDriverIsMeGroup(userInfo.user_email))
+                await dispatch(getDriverGroups(userInfo.user_email))
                 setMenuBtnText("My Carpools' join requests")
                 setIsLoading(false)
                 handleMenuClose()
@@ -136,9 +136,9 @@ const Carpools = () => {
 
             case 4:
                 setIsLoading(true)
-                await dispatch(getCarpoolList());
+                await dispatch(getCarpools());
                 await dispatch(getMyJoinRequests(userInfo.user_email))
-                await dispatch(getDriverIsMeGroup(userInfo.user_email))
+                await dispatch(getDriverGroups(userInfo.user_email))
                 setMenuBtnText("My join requests")
                 setIsLoading(false)
                 handleMenuClose()
@@ -146,8 +146,8 @@ const Carpools = () => {
 
             case 5:
                 setIsLoading(true)
-                await dispatch(getCarpoolList());
-                await dispatch(getDriverIsMeGroup(userInfo.user_email))
+                await dispatch(getCarpools());
+                await dispatch(getDriverGroups(userInfo.user_email))
                 let text = searchType === 'fromDriver' ? 'Available Carpools' : 'Requests from students'
                 setMenuBtnText(`Search Result: ${text}`)
                 setIsLoading(false)
@@ -285,7 +285,7 @@ const Carpools = () => {
         setFullScreenDialogOpen(true)
         setSubmitBtnDisable(false)
     }
-    
+
     return (
         <div className='carpool-page'>
             <div className='search-div'>
@@ -313,7 +313,7 @@ const Carpools = () => {
 
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DemoItem>
-                            <DateTimePicker value={dateTime} onChange={(newDateTime) => setDateTime(newDateTime)}/>
+                            <DateTimePicker value={dateTime} onChange={(newDateTime) => setDateTime(newDateTime)} />
                         </DemoItem>
                     </LocalizationProvider>
 
@@ -325,7 +325,7 @@ const Carpools = () => {
                     <MyButton variant='contained' endIcon={<SearchIcon />} sx={{ backgroundColor: orange[500] }} type='submit'>Search</MyButton>
                 </form>
             </div>
-            
+
             <div className='carpool-options'>
                 <Box>
                     <MyButton
@@ -349,17 +349,17 @@ const Carpools = () => {
                         onClose={handleMenuClose}
                     >
                         <MenuItem className={btnActiveIndex === 0 ? 'selected-menu-option' : ''} onClick={() => handleBtnActiveClick(0)}>Available Carpools</MenuItem>
-                        {userInfo.user_role === 'Driver' && <MenuItem className={btnActiveIndex === 1 ? 'selected-menu-option': ''} onClick={() => handleBtnActiveClick(1)}>Requests from Students</MenuItem>}
+                        {userInfo.user_role === 'Driver' && <MenuItem className={btnActiveIndex === 1 ? 'selected-menu-option' : ''} onClick={() => handleBtnActiveClick(1)}>Requests from Students</MenuItem>}
                         <MenuItem className={btnActiveIndex === 2 ? 'selected-menu-option' : ''} onClick={() => handleBtnActiveClick(2)}>My Carpools</MenuItem>
-                        {userInfo.user_role === 'Driver' && <MenuItem className={btnActiveIndex === 3 ? 'selected-menu-option': ''} onClick={() => handleBtnActiveClick(3)}>My Carpools' join requests</MenuItem>}
-                        <MenuItem className={btnActiveIndex === 4 ? 'selected-menu-option': ''} onClick={() => handleBtnActiveClick(4)}>My join requests</MenuItem>
+                        {userInfo.user_role === 'Driver' && <MenuItem className={btnActiveIndex === 3 ? 'selected-menu-option' : ''} onClick={() => handleBtnActiveClick(3)}>My Carpools' join requests</MenuItem>}
+                        <MenuItem className={btnActiveIndex === 4 ? 'selected-menu-option' : ''} onClick={() => handleBtnActiveClick(4)}>My join requests</MenuItem>
                         {userInfo.user_role === 'Driver' && <MenuItem onClick={() => postAction('fromDriver')}><AddIcon sx={{ color: '#5b277b' }} />Post a ride</MenuItem>}
                         <MenuItem onClick={() => postAction('fromStudent')}><AddIcon sx={{ color: '#5b277b' }} />Post a request</MenuItem>
                     </Menu>
                 </Box>
                 <br />
 
-                {isLoading ? <Loading /> : <CarpoolList category={btnActiveIndex} searchResult={searchResult}/>}
+                {isLoading ? <Loading /> : <CarpoolList category={btnActiveIndex} searchResult={searchResult} />}
 
                 <React.Fragment>
                     <Dialog
@@ -423,7 +423,7 @@ const Carpools = () => {
                             <input type="text" id='title' name='title' placeholder="Give your carpool a title (e.g Melaka to Johor)" minLength={5} style={{ padding: '0.5rem', width: '100%' }} onChange={(e) => setFormTitle(e.target.value)} required />
                             <br /><br />
                             <DialogActions sx={{ display: 'flex', justifyContent: 'center' }}>
-                                <Button 
+                                <Button
                                     type='submit'
                                     disabled={submitBtnDisable}
                                     className='carpool-form-submit-btn'
@@ -434,7 +434,7 @@ const Carpools = () => {
                         </DialogContent>
                     </Dialog>
                 </React.Fragment>
-                
+
             </div>
 
             <AlertMsg open={showAlert.alert} status={showAlert.status} msg={showAlert.msg} handleClose={handleClose} />

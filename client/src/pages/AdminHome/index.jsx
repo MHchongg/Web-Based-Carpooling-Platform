@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut, fetchUserInfo } from '../../store/modules/userStore';
-import { getUserList } from '../../store/modules/adminStore';
+import { getUsers } from '../../store/modules/adminStore';
 import MenuIcon from '@mui/icons-material/Menu';
 import DirectionsCarFilledRoundedIcon from '@mui/icons-material/DirectionsCarFilledRounded';
 import Groups2RoundedIcon from '@mui/icons-material/Groups2Rounded';
@@ -30,7 +30,7 @@ function AdminHome() {
     useEffect(() => {
         async function fetchUser() {
             await dispatch(fetchUserInfo(userEmail))
-            await dispatch(getUserList())
+            await dispatch(getUsers())
             await setIsLoading(false)
         }
 

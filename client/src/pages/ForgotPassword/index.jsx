@@ -6,7 +6,7 @@ import { styled } from '@mui/material/styles';
 import { orange } from '@mui/material/colors';
 import Footer from '../../components/Footer'
 import AlertMsg from '../../components/AlertMsg';
-import { sendResetPasswordEmail } from "../../store/modules/userStore";
+import { forgotPassword } from "../../store/modules/userStore";
 import "./index.scss"
 
 const MyButton = styled(Button)(({ theme }) => ({
@@ -44,7 +44,7 @@ const ForgotPassword = () => {
         if (emailRegex.test(emailAddress)) {
             setBtnDisabled(true)
             setIsProcessing(true)
-            const response = await dispatch(sendResetPasswordEmail(emailAddress))
+            const response = await dispatch(forgotPassword(emailAddress))
             setShowAlert(response)
             setIsProcessing(false)
         }
