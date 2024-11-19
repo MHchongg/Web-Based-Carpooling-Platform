@@ -35,6 +35,7 @@ DB_HOST=your_db_host
 DB_USER=your_db_user
 DB_PASSWORD=your_db_password
 DB_NAME=your_db_name
+DB_PORT=your_db_port
 USER_EMAIL=your_email
 APP_PASSWORD=your_email_app_password
 ~~~~
