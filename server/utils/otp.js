@@ -1,6 +1,6 @@
 const crypto = require('crypto');
-
-const otps = new Map();
+const NodeCache = require("node-cache");
+const otpCache = new NodeCache();
 
 function generateOTP() {
     const otp = crypto.randomInt(100000, 999999).toString();
@@ -8,14 +8,13 @@ function generateOTP() {
 }
 
 function storeOTP(identifier, otp) {
-    otps.set(identifier, otp);
-    setTimeout(() => otps.delete(identifier), 60000); // 1 minute
+    otpCache.set(identifier, otp, 60); // 60 seconds
 }
 
 function verifyOTP(identifier, otp) {
-    const storedOTP = otps.get(identifier);
+    const storedOTP = otpCache.get(identifier)
     if (storedOTP === otp) {
-        otps.delete(identifier);
+        otpCache.del(identifier);
         return true;
     }
     return false;
